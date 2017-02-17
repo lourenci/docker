@@ -1,0 +1,30 @@
+version: '2'
+services:
+    mysql:
+        image: mysql:5.6.35
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: mysql
+        volumes:
+            - okto_db:/var/lib/mysql
+    php:
+        build: ./php
+        links:
+            - mysql
+        expose:
+            - "9000"
+        volumes:
+            - ./okto:/usr/share/nginx/html
+    nginx:
+        build: ./nginx
+        volumes:
+            - ./okto:/usr/share/nginx/html
+        links:
+            - php
+        ports:
+            - "8000:80"
+volumes:
+    okto_db:
+        external: true
