@@ -1,0 +1,1 @@
+docker run --rm --user 501 -v $PWD:/app -v ~/.ssh:/root/.ssh composer/composer:alpine %*
