@@ -1,1 +1,1 @@
-docker run --rm -it -v $(pwd):/cmd -w /cmd rails rails $*
+docker run --rm -it --user $(id -u):$(id -g) -v $(pwd):/cmd -w /cmd rails rails $*
