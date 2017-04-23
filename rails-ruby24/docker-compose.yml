@@ -1,8 +1,18 @@
 version: '3'
 services:
+  db:
+    image: postgres:9.6.1-alpine
+    ports:
+        - "${DB_PORT}:5432"
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
   rails:
     image: rails
     command: tail -f /dev/null
+    links:
+      - db
     volumes:
       - .:/app
     ports:
