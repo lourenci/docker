@@ -8,8 +8,6 @@ services:
             POSTGRES_DB: ${DB_DATABASE}
             POSTGRES_USER: ${DB_USERNAME}
             POSTGRES_PASSWORD: ${DB_PASSWORD}
-        volumes:
-            - pgdata-ldv02:/var/lib/postgresql/data
     php:
         build: ./php
         links:
@@ -26,8 +24,3 @@ services:
             - php
         ports:
             - "${DOCKER_NGINX_PORT}:80"
-#Não é necessário para rodar no linux.
-#Caso seja configurado, o volume deve ser criado antes do up: docker volume create --name=pgdata-ldv02
-volumes:
-    pgdata-ldv02:
-        external: true
