@@ -1,1 +1,1 @@
-docker run --rm -it -v $(pwd):/usr/src/app -w /usr/src/app php712cli php $*
+docker run --rm -it -v $(pwd):/usr/src/app -w /usr/src/app php715cli php $*
