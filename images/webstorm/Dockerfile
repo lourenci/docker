@@ -6,13 +6,14 @@ RUN apt-get update && apt-get -y install build-essential curl tar git
 RUN curl -OL https://download.jetbrains.com/webstorm/WebStorm-2017.1.3.tar.gz && \
     tar -xvzf WebStorm-2017.1.3.tar.gz
 
-# Install Node and Yarn
+# Install Node
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
 RUN apt-get install -y nodejs
 
-# Install bower and Gulp
+# Install global NPM packages
 RUN npm install -g bower
 RUN npm install -g gulp-cli
+RUN npm install -g yarn
 
 # Install chrome
 RUN apt-get install -y xvfb chromium
