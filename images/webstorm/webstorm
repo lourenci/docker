@@ -1,6 +1,8 @@
-docker run -it --rm \
+docker start webstorm || \
+docker run -it \
+        --name webstorm \
         -e DISPLAY=$DISPLAY \
         -v /tmp/.X11-unix:/tmp/.X11-unix \
-        -v ~/.WebStorm2017.1:/root/.WebStorm2017.1 \
-        -v ~/Developer:/root/Developer \
+        -v ~/.ssh:/home/$USER/.ssh \
+        -v ~/Developer:/home/$USER/Developer \
         webstorm

@@ -28,8 +28,16 @@ RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true 
 RUN apt-get update
 RUN apt-get install -y oracle-java8-set-default
 
+# Add the same host's user. Pass the user through `docker build --build-arg user=$USER -t webstorm .`
+ARG user
+RUN useradd -ms /bin/bash $user
+USER $user
+
 # Install FiraCode Font
 COPY install-fira-code.sh /tmp
 RUN mkdir -p ~/.local/share/fonts && bash /tmp/install-fira-code.sh 
+
+# Install Dracula Theme
+RUN git clone https://github.com/dracula/jetbrains.git ~/.WebStorm2017.1/config/colors
 
 ENTRYPOINT ["/WebStorm-171.4424.63/bin/webstorm.sh"]
