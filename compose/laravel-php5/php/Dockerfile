@@ -8,6 +8,6 @@ RUN apk upgrade --update && apk add \
         --with-png-dir=/usr/include/ \
         --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
-    && docker-php-ext-install pdo pdo_pgsql pgsql mcrypt gd mbstring tokenizer xml
+    && docker-php-ext-install pdo pdo_pgsql pgsql mysql pdo_mysql mcrypt gd mbstring tokenizer xml
 
 COPY www.conf /usr/local/etc/php-fpm.d/www.conf
