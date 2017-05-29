@@ -1,0 +1,26 @@
+version: '2'
+services:
+    db:
+        image: postgres:9.6.1-alpine
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_DB: postgres
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+    php:
+        build: ./php
+        links:
+            - db
+        expose:
+            - "9000"
+        volumes:
+            - .:/usr/share/nginx/html
+    nginx:
+        build: ./nginx
+        volumes:
+            - .:/usr/share/nginx/html
+        links:
+            - php
+        ports:
+            - "8080:80"
