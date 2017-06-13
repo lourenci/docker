@@ -1,16 +1,17 @@
 version: '3'
 services:
   db:
-    image: postgres:9.6.1-alpine
+    image: postgres:9.6.3-alpine
     ports:
-        - "${DB_PORT}:5432"
+        - "5432:5432"
     environment:
-      POSTGRES_DB: ${DB_DATABASE}
-      POSTGRES_USER: ${DB_USERNAME}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-  rails:
-    image: rails
-    command: tail -f /dev/null
+      POSTGRES_DB: rails_ruby
+      POSTGRES_USER: pg
+      POSTGRES_PASSWORD: pg
+  web:
+    build: ./rails-ruby
+    image: rails-ruby
+    command: puma
     links:
       - db
     volumes:
