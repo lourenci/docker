@@ -9,7 +9,10 @@ services:
       POSTGRES_USER: pg
       POSTGRES_PASSWORD: pg
   web:
-    build: ./rails-ruby
+    build:
+      context: ./rails-ruby
+      args:
+        - user=${USER}
     image: rails-ruby
     command: puma
     links:
