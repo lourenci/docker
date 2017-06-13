@@ -12,6 +12,9 @@ RUN apt-get update && apt-get install yarn
 
 RUN gem install rails
 RUN gem install rubocop
+RUN gem install puma
+RUN gem install rspec
+RUN gem install pg
 
 RUN mkdir /app
 
