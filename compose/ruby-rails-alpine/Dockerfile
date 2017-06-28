@@ -15,8 +15,11 @@ RUN sudo npm install --global yarn
 
 # Install rails
 RUN gem install rails
+RUN gem install rubocop
+RUN gem install rspec
 
 RUN sudo mkdir /app
+RUN sudo chown $user /app
 WORKDIR /app
 
 # Install basic rails gems in image
