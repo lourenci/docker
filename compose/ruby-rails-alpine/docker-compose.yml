@@ -10,11 +10,10 @@ services:
       POSTGRES_PASSWORD: pg
   web:
     build:
-      context: ./rails-ruby
+      context: .
       args:
         - user=${USER}
-    image: rails-ruby
-    command: tail -f /dev/null
+    command: sh -c "puma || tail -f /dev/null"
     links:
       - db
     volumes:
