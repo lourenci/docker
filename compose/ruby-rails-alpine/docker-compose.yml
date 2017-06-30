@@ -13,7 +13,7 @@ services:
       context: .
       args:
         - user=${USER}
-    command: sh -c "puma || tail -f /dev/null"
+    command: sh -c "puma || (bundle && puma)"
     links:
       - db
     volumes:
