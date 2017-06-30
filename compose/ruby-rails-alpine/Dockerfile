@@ -1,7 +1,11 @@
 FROM ruby:2.4.1-alpine
 
 RUN apk update 
-RUN apk add alpine-sdk postgresql-dev
+RUN apk add alpine-sdk tzdata postgresql-dev
+
+# Machine timezone
+RUN cp /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+RUN echo "America/Sao_Paulo" >  /etc/timezone
 
 # Add host user to image
 ARG user
