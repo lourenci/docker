@@ -1,0 +1,8 @@
+docker start rubymine || \
+docker run -it \
+        --name rubymine \
+        -e DISPLAY=$DISPLAY \
+        -v /tmp/.X11-unix:/tmp/.X11-unix \
+        -v ~/.ssh:/home/$USER/.ssh \
+        -v ~/Developer:/home/$USER/Developer \
+        rubymine
