@@ -1,6 +1,6 @@
 FROM ruby:2.2.5
 
-RUN apt-get update && apt-get -y install build-essential curl tar git nodejs sudo libxtst6
+RUN apt-get update && apt-get -y install build-essential curl tar git sudo libxtst6
 
 # Install Java 8
 RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" | tee /etc/apt/sources.list.d/webupd8team-java.list
@@ -9,6 +9,10 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
 RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
 RUN apt-get update
 RUN apt-get install -y oracle-java8-set-default
+
+# Install Node
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
+RUN apt-get install -y nodejs
 
 # Download and install rubymine
 RUN curl -OL https://download.jetbrains.com/ruby/RubyMine-2017.1.5.tar.gz && \
