@@ -4,7 +4,6 @@ docker run -it \
 	--add-host db:127.0.0.1 \
 	--name rubymine-ruby-2.2.5 \
         -e DISPLAY=$DISPLAY \
-	-e LANG=C.UTF-8 \
         -v /tmp/.X11-unix:/tmp/.X11-unix \
         -v ~/.ssh:/home/$USER/.ssh \
         -v ~/Developer:/home/$USER/Developer \

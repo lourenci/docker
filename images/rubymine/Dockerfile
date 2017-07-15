@@ -18,7 +18,7 @@ RUN apt-get install -y nodejs
 RUN curl -OL https://download.jetbrains.com/ruby/RubyMine-2017.1.5.tar.gz && \
     tar -xvzf RubyMine-2017.1.5.tar.gz
 
-# Add the same host's user. Pass the user through `docker build --build-arg user=$USER -t webstorm .`
+# Add the same host's user. Pass the user through `--build-arg user=$USER`
 ARG USER
 RUN useradd -ms /bin/bash $USER
 RUN usermod -a -G sudo $USER
@@ -27,6 +27,9 @@ USER $USER
 
 # Install FiraCode Font
 COPY install-fira-code.sh /tmp
-RUN mkdir -p ~/.local/share/fonts && bash /tmp/install-fira-code.sh 
+RUN mkdir -p ~/.local/share/fonts && bash /tmp/install-fira-code.sh
+
+# Setup to allow utf8 characters.
+ENV LANG C.UTF-8
 
 ENTRYPOINT ["/RubyMine-2017.1.5/bin/rubymine.sh"]
