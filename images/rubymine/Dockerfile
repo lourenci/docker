@@ -2,7 +2,7 @@ FROM ruby:2.2.5
 
 # MACHINE
 RUN apt-get update && apt-get -y install sudo
-# Add the same host's user. Pass the user through `--build-arg user=$USER`
+# Add the same host's user. Pass the user through `--build-arg USER=$USER`
 ARG USER
 RUN useradd -ms /bin/bash $USER
 RUN usermod -a -G sudo $USER

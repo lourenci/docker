@@ -1,1 +1,2 @@
+touch ~/.netrc
 docker run --rm -it -v $HOME/.netrc:/root/.netrc -v $PWD:/app heroku $@
