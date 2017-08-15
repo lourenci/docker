@@ -1,11 +1,11 @@
-docker start rubymine-ruby-2.2.5 || \
+docker start rubymine2017.2.1-ruby-2.2.5 || \
 docker run -it \
 	-d \
         --network host \
 	--add-host db:127.0.0.1 \
-	--name rubymine-ruby-2.2.5 \
+	--name rubymine2017.2.1-ruby-2.2.5 \
         -e DISPLAY=$DISPLAY \
         -v /tmp/.X11-unix:/tmp/.X11-unix \
         -v ~/.ssh:/home/$USER/.ssh \
         -v ~/Developer:/home/$USER/Developer \
-        rubymine-ruby-2.2.5
+        rubymine2017.2.1-ruby-2.2.5
