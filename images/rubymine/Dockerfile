@@ -14,15 +14,8 @@ RUN sudo apt-get update && sudo apt-get -y install build-essential curl tar git 
 # Setup timezone
 RUN sudo cp /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 RUN echo "America/Sao_Paulo" | sudo tee /etc/timezone
-# Setup locale
-RUN sudo apt-get install -y locales
-RUN echo "pt_BR.UTF-8 UTF-8" | sudo tee -a /etc/locale.gen
-RUN sudo locale-gen
-ENV LC_NUMERIC pt_BR.UTF-8
-ENV LC_TIME pt_BR.UTF-8
-ENV LC_MONETARY pt_BR.UTF-8
-ENV LC_PAPER pt_BR.UTF-8
-ENV LC_MEASUREMENT pt_BR.UTF-8
+# Setup to allow utf8 characters.
+ENV LANG C.UTF-8
 
 # THIRD PARTY APPLICATIONS
 # Install Java 8
@@ -38,13 +31,13 @@ RUN sudo apt-get install -y nodejs
 
 # Download and install rubymine
 WORKDIR /tmp
-RUN curl -OL https://download.jetbrains.com/ruby/RubyMine-2017.2.1.tar.gz && \
-    tar -xvzf RubyMine-2017.2.1.tar.gz
-RUN sudo mv RubyMine-2017.2.1 /opt
-RUN rm RubyMine-2017.2.1.tar.gz
+RUN curl -OL https://download.jetbrains.com/ruby/RubyMine-2017.1.5.tar.gz && \
+    tar -xvzf RubyMine-2017.1.5.tar.gz
+RUN sudo mv RubyMine-2017.1.5 /opt
+RUN rm RubyMine-2017.1.5.tar.gz
 
 # Install FiraCode Font
 COPY install-fira-code.sh /tmp
 RUN mkdir -p ~/.local/share/fonts && bash /tmp/install-fira-code.sh
 
-ENTRYPOINT ["/opt/RubyMine-2017.2.1/bin/rubymine.sh"]
+ENTRYPOINT ["/opt/RubyMine-2017.1.5/bin/rubymine.sh"]
