@@ -9,5 +9,3 @@ RUN apt-get update
 RUN apt-get install -y heroku
 
 WORKDIR /app
-
-ENTRYPOINT ["heroku"]
