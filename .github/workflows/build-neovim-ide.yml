@@ -1,0 +1,16 @@
+name: Build neovim-ide
+
+on:
+  schedule:
+    - cron: '0 12 * * 5'
+
+jobs:
+  build-and-publish:
+    runs-on: 'ubuntu-latest'
+    defaults:
+      run:
+        working-directory: images/neovim-ide
+    name: Build image and publish it to docker hub
+    steps:
+      - uses: actions/checkout@v2
+      - run: make DOCKER_TOKEN={{secrets.DOCKER_TOKEN}} rebuild-and-publish
