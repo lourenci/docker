@@ -1,9 +1,11 @@
 FROM lourenci/nvim:nightly-alpine
 
-RUN apk add nodejs git npm openssh-client ripgrep build-base bash
+RUN apk add nodejs git npm openssh-client ripgrep build-base bash go
 
 RUN npm install -g typescript typescript-language-server vscode-langservers-extracted yaml-language-server \
   dockerfile-language-server-nodejs diagnostic-languageserver
+
+RUN go get golang.org/x/tools/gopls@latest
 
 RUN git clone https://github.com/wbthomason/packer.nvim \
    ~/.local/share/nvim/site/pack/packer/start/packer.nvim && \
