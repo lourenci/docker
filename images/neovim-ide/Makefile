@@ -6,5 +6,5 @@ symlink:
 
 rebuild-and-publish:
 	@docker build -t lourenci/nvim-ide:nightly-alpine .
-	@docker login -u lourenci -p DOCKER_TOKEN
+	@echo $(DOCKER_TOKEN) | docker login -u lourenci --password-stdin
 	@docker push lourenci/nvim-ide:nightly-alpine
